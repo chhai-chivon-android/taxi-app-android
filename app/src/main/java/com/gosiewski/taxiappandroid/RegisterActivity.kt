@@ -2,19 +2,19 @@ package com.gosiewski.taxiappandroid
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 
-class LoginActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
     companion object {
         fun newInstance(context: Context) : Intent {
-            return Intent(context, LoginActivity::class.java)
+            return Intent(context, RegisterActivity::class.java)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_register)
     }
 }
