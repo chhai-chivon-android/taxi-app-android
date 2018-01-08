@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/usernameEditText"
+            android:singleLine="true"
             android:hint="Username"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -31,6 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/passwordEditText"
+            android:singleLine="true"
+            android:inputType="textPassword"
             android:hint="Password"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -45,11 +48,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/repasswordEditText"
+            android:singleLine="true"
+            android:inputType="textPassword"
             android:hint="Re-type your password"/>
 
     </android.support.design.widget.TextInputLayout>
 
     <Button
+        android:id="@+id/proceedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
