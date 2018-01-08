@@ -4,7 +4,7 @@ import android.view.View
 import com.gosiewski.taxiappandroid.BaseViewHolder
 import kotlinx.android.synthetic.main.viewholder_client_order.view.*
 
-class ClientOrderHolder(itemView: View, private val deleteAction: (id: Long) -> Unit, private val finishAction: (id: Long) -> Unit)
+class ClientOrderHolder(itemView: View, private val deleteAction: (id: Long) -> Unit, private val finishAction: (id: Long) -> Unit, private val showAction: (lat: Double, lang: Double) -> Unit)
     : BaseViewHolder<Order>(itemView) {
 
     override fun bind(item: Order) {
@@ -26,5 +26,6 @@ class ClientOrderHolder(itemView: View, private val deleteAction: (id: Long) -> 
 
         itemView.cancelButton.setOnClickListener({ deleteAction.invoke(currentItem!!.id) })
         itemView.finishButton.setOnClickListener({ finishAction.invoke(currentItem!!.id) })
+        itemView.setOnClickListener({ showAction.invoke(currentItem!!.lattitude, currentItem!!.langtitude) })
     }
 }

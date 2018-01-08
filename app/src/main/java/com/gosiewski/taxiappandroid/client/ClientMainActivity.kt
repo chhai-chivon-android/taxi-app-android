@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.gosiewski.taxiappandroid.Application
+import com.gosiewski.taxiappandroid.MapActivity
 import com.gosiewski.taxiappandroid.R
 import com.gosiewski.taxiappandroid.splash.SplashActivity
 import com.gosiewski.taxiappandroid.utils.AuthInfoStorage
@@ -40,7 +41,7 @@ class ClientMainActivity : AppCompatActivity(), ClientMainView {
         (application as Application).getComponent(applicationContext).inject(this)
         presenter.bindView(this)
 
-        adapter = ClientOrdersAdapter(presenter::deleteOrder, presenter::finishOrder)
+        adapter = ClientOrdersAdapter(presenter::deleteOrder, presenter::finishOrder, this::showOrder)
 
         ordersRecyclerView.setHasFixedSize(true)
         ordersRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -76,5 +77,9 @@ class ClientMainActivity : AppCompatActivity(), ClientMainView {
 
     override fun showOrders(orders: List<Order>) {
         adapter.setOrders(orders)
+    }
+
+    private fun showOrder(lat: Double, lang: Double) {
+        startActivity(MapActivity.newInstance(this, lat, lang))
     }
 }

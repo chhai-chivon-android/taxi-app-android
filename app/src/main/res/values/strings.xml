@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Taxi Orders</string>
+    <string name="title_activity_map">Order location</string>
 </resources>
