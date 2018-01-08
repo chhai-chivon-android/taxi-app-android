@@ -1,8 +1,10 @@
-package com.gosiewski.taxiappandroid
+package com.gosiewski.taxiappandroid.splash
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import com.gosiewski.taxiappandroid.R
+import com.gosiewski.taxiappandroid.login.LoginActivity
+import com.gosiewski.taxiappandroid.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {

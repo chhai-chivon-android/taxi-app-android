@@ -1,11 +1,12 @@
-package com.gosiewski.taxiappandroid
+package com.gosiewski.taxiappandroid.register
 
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import com.gosiewski.taxiappandroid.R
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity(), RegisterView {
 
     companion object {
         fun newInstance(context: Context) : Intent {
