@@ -1,12 +1,10 @@
 package com.gosiewski.taxiappandroid.client
 
 import com.gosiewski.taxiappandroid.BasePresenter
-import com.gosiewski.taxiappandroid.utils.AuthInfoStorage
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
-class ClientMainPresenter @Inject constructor(private val ordersDataSource: OrdersDataSource,
-                                               private val authInfoStorage: AuthInfoStorage)
+class ClientMainPresenter @Inject constructor(private val ordersDataSource: OrdersDataSource)
     : BasePresenter<ClientMainView>() {
 
     fun start() {
@@ -17,5 +15,32 @@ class ClientMainPresenter @Inject constructor(private val ordersDataSource: Orde
                 }, { error ->
                     error.printStackTrace()
                 })
+    }
+
+    fun finishOrder(orderId: Long) {
+        ordersDataSource.finishOrder(orderId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    start()
+                }, {error ->
+                    error.printStackTrace()})
+    }
+
+    fun deleteOrder(orderId: Long) {
+        ordersDataSource.cancelOrder(orderId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    start()
+                }, {error ->
+                    error.printStackTrace()})
+    }
+
+    fun addOrder(lattitude: Double, longtitude: Double) {
+        ordersDataSource.addOrder(OrderDto(lattitude, longtitude))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    start()
+                }, {error ->
+                    error.printStackTrace()})
     }
 }

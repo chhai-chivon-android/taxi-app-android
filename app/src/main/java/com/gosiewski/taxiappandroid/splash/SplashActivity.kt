@@ -1,5 +1,7 @@
 package com.gosiewski.taxiappandroid.splash
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.gosiewski.taxiappandroid.Application
@@ -13,6 +15,15 @@ import javax.inject.Inject
 
 class SplashActivity: AppCompatActivity() {
     @Inject lateinit var authInfoStorage: AuthInfoStorage
+
+    companion object {
+        fun newInstance(context: Context): Intent {
+            val intent = Intent(context, SplashActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            return intent
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
