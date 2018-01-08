@@ -15,7 +15,7 @@ class AuthorizedInterceptor(private val authInfoStorage: AuthInfoStorage) : Inte
         var request = chain.request()
         if (authorizedRequestsRepository.contains(AuthorizedCallAdapter.identify(request)))
             request = request.newBuilder()
-                    .addHeader("X-Authorization-Token", authInfoStorage.token)
+                    .addHeader("Authorization", "Bearer " + authInfoStorage.token)
                     .build()
 
         return chain.proceed(request)

@@ -11,7 +11,7 @@ class LoginPresenter @Inject constructor(private val loginDataSource: LoginDataS
                                          private val authInfoStorage: AuthInfoStorage)
     : BasePresenter<LoginView>() {
 
-    fun loginAction(username: String, password: String) {
+    fun loginAction(username: String, password: String, isDriver: Boolean) {
         when {
             username.isEmpty() -> view?.showEmptyUsernameError()
             password.isEmpty() -> view?.showEmptyPasswordError()
@@ -24,7 +24,11 @@ class LoginPresenter @Inject constructor(private val loginDataSource: LoginDataS
                         .subscribe(
                                 {token: AuthToken ->
                                     authInfoStorage.token = token.access_token
-                                    view?.showLoginSuccessInfo()
+
+                                    if (isDriver)
+                                        view?.proceedToDriverMainView()
+                                    else
+                                        view?.proceedToClientMainView()
                                 },
                                 {error: Throwable ->
                                     error.printStackTrace()

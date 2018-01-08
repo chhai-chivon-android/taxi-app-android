@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.gosiewski.taxiappandroid.Application
 import com.gosiewski.taxiappandroid.R
+import com.gosiewski.taxiappandroid.client.ClientMainActivity
+import com.gosiewski.taxiappandroid.driver.DriverMainActivity
 import com.gosiewski.taxiappandroid.utils.toast
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
@@ -26,7 +28,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
         presenter.bindView(this)
 
         proceedButton.setOnClickListener { presenter.loginAction(usernameEditText.text.toString(),
-                passwordEditText.text.toString()) }
+                passwordEditText.text.toString(), driverSwitch.isActivated) }
     }
 
     override fun showEmptyUsernameError() {
@@ -41,11 +43,17 @@ class LoginActivity : AppCompatActivity(), LoginView {
         baseContext.toast("Incorrect credentials")
     }
 
-    override fun showLoginSuccessInfo() {
-        baseContext.toast("Success!")
-    }
-
     override fun showGeneralError() {
         baseContext.toast("Oups, something went wrong!")
+    }
+
+    override fun proceedToDriverMainView() {
+        startActivity(DriverMainActivity.newInstance(this))
+        finish()
+    }
+
+    override fun proceedToClientMainView() {
+        startActivity(ClientMainActivity.newInstance(this))
+        finish()
     }
 }

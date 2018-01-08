@@ -5,5 +5,7 @@ interface LoginView {
     fun showEmptyUsernameError()
     fun showEmptyPasswordError()
     fun showIncorrectCredentialsError()
-    fun showLoginSuccessInfo()
+
+    fun proceedToDriverMainView()
+    fun proceedToClientMainView()
 }
